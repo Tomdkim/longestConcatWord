@@ -7,6 +7,10 @@ def main():
     singleSet = set()
     concatSet = set()
 
+    longest = 0 # Length of the longest concatenated word
+    secondLongest = 0 # Length of the second longest concatenated word
+    answer = ['a', 'a'] # An array of the longest and the second longest concat-words
+
     # First identify concatenated words
     for line in file:
 
@@ -22,24 +26,14 @@ def main():
             singleSet.add(line)
         elif (concatedWord > 1):
             concatSet.add(line)
-
-    longest = 0
-    secondLongest = 0
-    answer = ['a', 'a']
-
-    # Find the longest and the second longest concatenated words
-    for concatWord in concatSet:
-
-        if (len(concatWord) > longest):
-            tmp = answer[0]
-            answer[0] = concatWord
-            longest = len(concatWord)
-            if (len(tmp) > secondLongest):
-                answer[1] = tmp
-                secondLongest = len(tmp)
-        elif (len(concatWord) > secondLongest):
-            answer[1] = concatWord
-            secondLongest = len(concatWord)
+            if (len(line) > longest):
+                answer[1] = answer[0]
+                secondLongest = longest
+                answer[0] = line
+                longest = len(line)
+            elif (len(line) > secondLongest):
+                answer[1] = line
+                secondLongest = len(line)
 
     print("The longest concatenated word is: " + str(answer[0]) + " / length: " + str(len(answer[0])))
     print("The second longest concatenated word is: " + str(answer[1]) + " / length: " + str(len(answer[1])))
