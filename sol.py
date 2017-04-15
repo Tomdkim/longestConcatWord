@@ -1,4 +1,5 @@
 import sys
+import time
 
 def main():
 
@@ -69,7 +70,7 @@ if __name__ == "__main__":
         print("Wrong number of arguments: Please include your path of the file.")
         exit(1)
     path = str(sys.argv[1])
-
+    start = time.clock()
     # First Cycle of Read
     dictionary = set()
     file = open(path, "r")
@@ -79,3 +80,4 @@ if __name__ == "__main__":
         dictionary.add(line)
     file.close()
     main()
+    print('Elapsed Time(secs):  {0:.3f}'.format(time.clock() - start))
